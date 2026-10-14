@@ -1,0 +1,17 @@
+{
+  "name": "api-express",
+  "version": "1.0.0",
+  "description": "- Javascript(언어)\r - Node js(실행 환경) 설치\r   npm init -y\r - express 프레임워크 설치",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11"
+  },
+  "type": "module"
+}

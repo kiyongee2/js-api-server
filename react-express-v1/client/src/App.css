@@ -1,0 +1,57 @@
+#center{
+  margin: 10px auto;
+}
+.header{
+  margin: 20px auto;
+}
+.header a{
+  padding: 0 20px;
+  text-decoration: none;
+  color: black;
+}
+.header a:hover{
+  color: gray;
+}
+
+/* 상품 리스트 스타일 */
+.product-list{
+  margin: 30px auto;
+}
+.product-list h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.product-list table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.product-list th, .product-list td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.product-list th{
+  background-color: #f2f2f2;
+}
+.product-list .btn-add{
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* 상품 정보 스타일 */
+.product-details{ 
+  width: 80%;
+  margin: 20px auto;
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+.edit-buttons {
+  margin-top: 20px;
+}
+.edit-buttons button {
+  margin-right: 10px;
+}
+
