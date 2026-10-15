@@ -6,9 +6,10 @@ const UpdateProduct = () => {
   const { id } = useParams()
   const [formData, setFormData] = useState({
     productName: '',
-    price: ''
+    price: '',
+    description: ''
   })
-  const { productName, price } = formData
+  const { productName, price, description } = formData
   const navigate = useNavigate()
 
   // 컴포넌트가 마운트될 때 상품 정보를 조회하여 폼에 초기값 설정
@@ -18,7 +19,8 @@ const UpdateProduct = () => {
         const response = await api.get(`/products/${id}`)
         setFormData({
           productName: response.data.product_name,
-          price: response.data.price
+          price: response.data.price,
+          description: response.data.description
         })
       } catch (error) {
         console.error('상품 조회 에러:', error)
@@ -48,7 +50,8 @@ const UpdateProduct = () => {
   const handleCancel = () => {
     setFormData({
       productName: '',
-      price: ''
+      price: '',
+      description: ''
     })
   }
 
@@ -74,14 +77,20 @@ const UpdateProduct = () => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit">수정</button>
-        <button 
-          type="button" 
-          onClick={handleCancel}
-          style={{background: '#aaa', color: '#fff'}}
-        >
-          취소
-        </button>
+        <div>
+          <label htmlFor="description">설명</label>
+          <textarea
+              id="description"
+              name="description"
+              rows={5}
+              value={description}
+              onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <button type="submit">수정</button>
+          <button type="button" onClick={handleCancel}>취소</button>
+        </div>
       </form>
     </div>
   )

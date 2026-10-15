@@ -1,19 +1,19 @@
 
-import mainImage from '../assets/hero.png';
+import mainPhoto from '../assets/hero.png';
 
-const Home = () => {
+const Main = () => {
   return (
     <main className="main">
         <h2>컴퓨터 주변 기기 판매</h2>
         <section>
             <p>최신 컴퓨터 주변 기기를 만나보세요!</p>
             <div>
-                <img src={mainImage} alt="컴퓨터 주변 기기" />
+                <img src={mainPhoto} alt="메인 이미지" />
             </div>
         </section>
     </main>
   )
 }
 
-export default Home
+export default Main;
 

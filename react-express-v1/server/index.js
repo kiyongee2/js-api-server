@@ -52,9 +52,9 @@ app.use(express.json());
 
 // 상품 등록 페이지 요청 라우트 설정
 app.post('/api/products', (req, res) => {
-  const { productName, price } = req.body; // 요청 본문에서 상품 이름과 가격 추출
-  const sql = 'INSERT INTO product (product_name, price) VALUES (?, ?)';
-  db.query(sql, [productName, price], (err, results) => {
+  const { productName, price, description } = req.body; // 요청 본문에서 상품 이름과 가격 추출
+  const sql = 'INSERT INTO product (product_name, price, description) VALUES (?, ?, ?)';
+  db.query(sql, [productName, price, description], (err, results) => {
     if (err) {
       // 에러 발생 시 500 상태 코드와 에러 메시지 반환  
       console.error('상품 등록 에러:', err);
@@ -96,9 +96,9 @@ app.delete('/api/products/:id', (req, res) => {
 // 상품 수정 라우트 설정
 app.put('/api/products/:id', (req, res) => {
   const productId = req.params.id; // URL 경로에서 상품 ID 추출
-  const { productName, price } = req.body; // 요청 본문에서 상품 이름과 가격 추출
-  const sql = 'UPDATE product SET product_name = ?, price = ? WHERE id = ?';
-  db.query(sql, [productName, price, productId], (err, results) => {
+  const { productName, price, description } = req.body; // 요청 본문에서 상품 이름과 가격 추출
+  const sql = 'UPDATE product SET product_name=?, price=?, description=? WHERE id = ?';
+  db.query(sql, [productName, price, description, productId], (err, results) => {
     if (err) {
       console.error('상품 수정 에러:', err);
       res.status(500).send('상품 수정 중 오류가 발생했습니다.');
@@ -110,5 +110,5 @@ app.put('/api/products/:id', (req, res) => {
 
 // 서버 시작
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`http://localhost:${PORT}에서 서버 실행중...`);
 });
