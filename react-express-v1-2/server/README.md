@@ -37,15 +37,12 @@ grant all privileges on jsdb.* to jsuser@localhost;
 ### jsdb에서 테이블 만들기
 -- product 테이블 생성
 create table product(
-	id int auto_increment primary key,
+	  id int auto_increment primary key,
     product_name varchar(20) not null,
     price int not null,
+    description text,
     created_at timestamp default current_timestamp
 );
 
--- 상품 추가
-insert into product(product_name, price) values('무선마우스', 30000);
 
--- 상품 검색
-select * from product;
 

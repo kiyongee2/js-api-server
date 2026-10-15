@@ -1,4 +1,3 @@
-
 import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
@@ -105,6 +104,49 @@ app.put('/api/products/:id', (req, res) => {
       return;
     }
     res.send('상품이 성공적으로 수정되었습니다.');
+  });
+});
+
+// 회원 목록
+app.get("/api/users", (req, res) => {
+  const sql = 'SELECT * FROM user';
+  db.query(sql, (err, results) => {
+    if (err) {
+      // 에러 발생 시 500 상태 코드와 에러 메시지 반환
+      console.error('회원 조회 에러:', err);
+      res.status(500).send('회원 조회 중 오류가 발생했습니다.');
+      return; // 즉시 종료
+    }
+    res.json(results); // 성공 시 회원 목록을 JSON 형식으로 반환
+  });
+});
+
+// 회원 가입
+app.post('/api/users', (req, res) => {
+  const { username, password, email } = req.body; // 요청 본문에서 상품 이름과 가격 추출
+  const sql = 'INSERT INTO user (username, password, email) VALUES (?, ?, ?)';
+  db.query(sql, [username, password, email], (err, results) => {
+    if (err) {
+      // 에러 발생 시 500 상태 코드와 에러 메시지 반환  
+      console.error('회원 가입 에러:', err);
+      res.status(500).send('회원 가입 중 오류가 발생했습니다.');
+      return; // 즉시 종료
+    }
+    res.status(201).send('회원이 성공적으로 가입되었습니다.'); 
+  });
+});
+
+// 회원 상세 보기(username 기준)
+app.get('/api/users/:username', (req, res) => {
+  const username = req.params.username; // URL 경로에서 상품 ID 추출
+  const sql = 'SELECT * FROM user WHERE username = ?';
+  db.query(sql, [username], (err, results) => {
+    if (err) {
+      console.error('회원 조회 에러:', err);
+      res.status(500).send('회원 조회 중 오류가 발생했습니다.');
+      return;
+    }
+    res.json(results[0]);
   });
 });
 

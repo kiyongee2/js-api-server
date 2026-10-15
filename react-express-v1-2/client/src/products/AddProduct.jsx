@@ -1,17 +1,15 @@
-
 import { useState } from 'react'
 import api from '../api/api'
 import { useNavigate } from 'react-router-dom'
 
 const AddProduct = () => {
-  // const [productName, setProductName] = useState('')
-  // const [price, setPrice] = useState('')
   const [formData, setFormData] = useState({
     productName: '',
-    price: ''
+    price: '',
+    description: ''
   })
   // formData에서 productName과 price 추출
-  const { productName, price } = formData
+  const { productName, price, description } = formData
   const navigate = useNavigate();
 
   // 입력값 변경 핸들러
@@ -38,7 +36,8 @@ const AddProduct = () => {
   const handleCancel = () => {
     setFormData({
       productName: '',
-      price: ''
+      price: '',
+      description: ''
     })
   }
 
@@ -50,6 +49,7 @@ const AddProduct = () => {
           <label htmlFor="productName">상품명</label>
           <input
             type="text"
+            id="productName"
             name="productName"
             value={productName}
             onChange={handleInputChange}
@@ -60,20 +60,28 @@ const AddProduct = () => {
           <label htmlFor="price">가격</label>
           <input
             type="number"
+            id="number"
             name="price"
             value={price}
             onChange={handleInputChange}
             placeholder='가격을 입력하세요'
           />
         </div>
-        <button type="submit">등록</button>
-        <button 
-          type="button" 
-          onClick={handleCancel}
-          style={{background: '#aaa', color: '#fff'}}
-        >
-          취소
-        </button>
+        <div>
+            <label htmlFor="description">설명</label>
+            <textarea
+                id="description"
+                name="description"
+                rows={5}
+                value={description}
+                onChange={handleInputChange}
+                placeholder="상품 설명을 입력하세요"
+            />
+        </div>
+        <div>
+          <button type="submit">등록</button>
+          <button type="button" onClick={handleCancel}>취소</button>
+        </div>
       </form>
     </div>
   )

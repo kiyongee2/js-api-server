@@ -25,17 +25,18 @@ const ProductInfo = () => {
     <div className='product-info'>
       <h2>상품 정보</h2>
       {product ? (
-        <div className='product-details'>
+        <div className='detail'>
           <p>상품 ID: {product.id}</p>
           <p>상품명: {product.product_name}</p>
           <p>가격: {product.price}원</p>
+          <p>설명: {product.description}</p>
           <p>등록일: {dayjs(product.created_at).format('YYYY-MM-DD HH:mm:ss')}</p>
         </div>
       ) : (
         <p>상품 정보를 불러오는 중입니다...</p>
       )}
 
-      <div className='edit-buttons'>
+      <div>
         <button onClick={() => navigate(`/products/update/${id}`)}>수정</button>
         <button onClick={async () => {
           if (window.confirm('정말 삭제하시겠습니까?')) {

@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 
-
 const ProductList = () => {
-  const [products, setProducts] = useState([])
+  // 전체 상품 목록 상태 관리
+  const [products, setProducts] = useState([]);
+
+  // 검색 키워드 상태 관리
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
     // fetchProducts 함수 정의: API 호출 및 상태 업데이트
@@ -18,11 +21,25 @@ const ProductList = () => {
       }
     }
     fetchProducts() // 상품 목록 조회 함수 호출
-  }, [])
+  }, []);
+
+  // 검색 키워드에 따라 필터링된 상품 목록
+  const filteredProducts = products.filter(product =>
+    product.product_name.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
 
   return (
     <div className="product-list">
-      <h2>상품 리스트</h2>
+      {/* 검색 기능 */}
+    <div className="search-bar">
+      <input
+        type="text"
+        placeholder="상품명으로 검색"
+        onChange={(e) => setSearchKeyword(e.target.value)} 
+      />
+    </div>
+
+      {/* 상품 목록 테이블 */}
       <table>
         <thead>
           <tr>
@@ -33,7 +50,7 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>
@@ -53,4 +70,3 @@ const ProductList = () => {
 }
 
 export default ProductList
-
